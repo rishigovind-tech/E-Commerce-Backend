@@ -5,8 +5,8 @@ const { verifyToken, verifyRole } = require("../middleware/authMiddleware");
 
 const router=express.Router()
 
-router.get("/products",verifyToken,verifyRole(["Admin", "User"]),productController.allProducts)
-router.get("/products/:productId",productController.getProductsId)
+router.get("/products",productController.allProducts)
+router.get("/products/:productId", verifyToken,productController.getProductsId)
 
 router.post("/products",verifyToken,productController.addProduct)
 
